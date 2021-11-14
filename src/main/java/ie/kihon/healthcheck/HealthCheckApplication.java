@@ -50,11 +50,15 @@ public class HealthCheckApplication implements CommandLineRunner {
 				LOG.error("Unexpected IO error: {}", e.getMessage(), e);
 			}
 		}
+		
+		printResults();
 	}
 	
 	public void printResults() {
+		LOG.info("************************************ RESULTS ************************************");
 		for (HostResult hr : resultRepo.findAll()) {
-	        LOG.info("Host: {}:{}\tResult: {}", hr.getHost().getHostname(), hr.getHost().getPort(), hr.getResult());
+	        LOG.info("Host: {}:{} Result: {}", hr.getHost().getHostname(), hr.getHost().getPort(), hr.getResult());
 	    }		
+		LOG.info("*********************************************************************************");
 	}
 }
