@@ -1,0 +1,33 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:healthdb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: false
+
+logging:
+  level:
+    org.springframework: ERROR
+    ie.kihon.HealthCheck: ${LOGLEVEL:DEBUG}
+
+settings:
+  retry: ${RETRY:3}
+  timeout: ${TIMEOUT:10}
+
+host-configuration:
+  servers:
+    -
+      hostname: localhost
+      port: 8080
+    -
+      hostname: localhost
+      port: 80
+ 
