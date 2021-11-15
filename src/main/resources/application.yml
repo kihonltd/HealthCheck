@@ -1,6 +1,8 @@
 spring:
+  profiles:
+    active: dev
   datasource:
-    url: jdbc:h2:mem:healthdb
+    url: jdbc:h2:mem:healthdb;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password: password
     driverClassName: org.h2.Driver
@@ -19,12 +21,3 @@ settings:
   retry: ${RETRY:3}
   timeout: ${TIMEOUT:10}
 
-host-configuration:
-  servers:
-    -
-      hostname: localhost
-      port: 8080
-    -
-      hostname: localhost
-      port: 80
- 

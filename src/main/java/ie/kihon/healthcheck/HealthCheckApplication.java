@@ -42,16 +42,18 @@ public class HealthCheckApplication implements CommandLineRunner {
 	public void run(String... args) {
 		LOG.debug("Retries: {}", config.getRetry());
 		LOG.debug("Timeout: {}", config.getTimeout());
-		for (Host server: applicationProperties.getServers()) {
-			Host host = hostRepo.save(new Host(server.getHostname(), server.getPort()));
-			try {
-				healthCheckService.check(host);
-			} catch (IOException e) {
-				LOG.error("Unexpected IO error: {}", e.getMessage(), e);
+		if (applicationProperties.getServers() != null) {
+			for (Host server: applicationProperties.getServers()) {
+				Host host = hostRepo.save(new Host(server.getHostname(), server.getPort()));
+				try {
+					healthCheckService.check(host);
+				} catch (IOException e) {
+					LOG.error("Unexpected IO error: {}", e.getMessage(), e);
+				}
 			}
+			printResults();
 		}
 		
-		printResults();
 	}
 	
 	public void printResults() {
