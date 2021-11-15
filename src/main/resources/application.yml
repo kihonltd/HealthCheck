@@ -15,9 +15,8 @@ spring:
 logging:
   level:
     org.springframework: ERROR
-    ie.kihon.HealthCheck: ${LOGLEVEL:INFO}
+    ie.kihon.healthcheck: ${LOGLEVEL:INFO}
 
 settings:
   retry: ${RETRY:3}
   timeout: ${TIMEOUT:10}
-
